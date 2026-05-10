@@ -1,6 +1,6 @@
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background-image: url("./images/table.png");
+  background-image: url("./images/circuitboard.jpg");
   background-size: cover;
   text-align: center;
   color: white;
@@ -15,7 +15,8 @@ h1 {
 #message-el {
   font-style: italic;
   font-family: monospace;
-  font-size: 22;
+  color: #39ff14;
+  font-size: 24;
 }
 
 button {
