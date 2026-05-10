@@ -5,8 +5,16 @@ function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// This _seems_ excessive, but I don't want to hardcode the card values yet.
 function randomCard() {
-  return randInt(2, 11);
+  let thisCard = randInt(1, 13);
+  if (thisCard === 1 ) {
+    return 11;
+  } else if ( thisCard > 10 ) {
+    return 10;
+  } else {
+    return thisCard;
+  }
 }
 
 function startGame() {
