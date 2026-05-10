@@ -5,6 +5,10 @@ function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomCard() {
+  return randInt(2, 11);
+}
+
 function startGame() {
   renderGame();
 }
@@ -17,7 +21,10 @@ function resetGame() {
 }
 
 function renderGame() {
-  cardsEl.textContent = "Cards: " + firstCard + ' ' + secondCard;
+  cardsEl.textContent = "Cards: ";
+  for (let i = 0; i < cards.length; i++) {
+    cardsEl.textContent += (cards[i] + ' ');
+  }
   sumEl.textContent = "Sum: " + sum;
   if (sum <= 20) {
     message = "Do you want to draw a new card?";
@@ -32,15 +39,15 @@ function renderGame() {
 }
 
 function newCard() {
-  let card = randInt(2,11);
+  let card = randomCard();
   sum += card;
-  cardsEl += (' ' + card);
+  cards.push(card);
   renderGame();
 }
 
-let firstCard = randInt(2,11);
-let secondCard = randInt(2,11);
-let cards = [];
+let firstCard = randomCard();
+let secondCard = randomCard();
+let cards = [firstCard, secondCard];
 let sum = firstCard + secondCard;
 let hasBlackJack = false;
 let isAlive = true;
