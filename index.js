@@ -1,3 +1,19 @@
+// Vars we'll need
+let firstCard;
+let secondCard;
+let sum = 0;
+let cards = [];
+let hasBlackJack = false;
+let isAlive = false;
+let message = '';
+let messageEl = document.querySelector("#message-el");
+let sumEl = document.querySelector("#sum-el");
+let cardsEl = document.querySelector("#card-el");
+let playerEl = document.querySelector("#player-el");
+let player = {
+  name: "Bill",
+  chips: 145
+}
 
 // Basic randInt function since we don't wanna have to keep retyping that.
 function randInt(min, max) {
@@ -5,7 +21,6 @@ function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// This _seems_ excessive, but I don't want to hardcode the card values yet.
 function randomCard() {
   let thisCard = randInt(1, 13);
   if (thisCard === 1 ) {
@@ -18,9 +33,16 @@ function randomCard() {
 }
 
 function startGame() {
+  isAlive = true;
+  firstCard = randomCard();
+  secondCard = randomCard();
+  cards.push(firstCard);
+  cards.push(secondCard);
+  sum = firstCard + secondCard;
   renderGame();
 }
 
+// TODO: NOT WORKING
 function resetGame() {
   sum = 0;
   sumEl = "Sum: ";
@@ -29,6 +51,7 @@ function resetGame() {
 }
 
 function renderGame() {
+  playerEl.textContent = player.name + ": " + player.chips;
   cardsEl.textContent = "Cards: ";
   for (let i = 0; i < cards.length; i++) {
     cardsEl.textContent += (cards[i] + ' ');
@@ -46,21 +69,13 @@ function renderGame() {
   messageEl.textContent = message;
 }
 
+// TODO: Still generates some values that will change the messageEl text. FIX
 function newCard() {
-  let card = randomCard();
-  sum += card;
-  cards.push(card);
-  renderGame();
+  if (isAlive && hasBlackJack === false) {
+    let card = randomCard();
+    sum += card;
+    cards.push(card);
+    renderGame();
+  }
 }
 
-let firstCard = randomCard();
-let secondCard = randomCard();
-let cards = [firstCard, secondCard];
-let sum = firstCard + secondCard;
-let hasBlackJack = false;
-let isAlive = true;
-let message = '';
-let messageEl = document.getElementById("message-el");
-// Using the query selector to be a little more fancy
-let sumEl = document.querySelector("#sum-el");
-let cardsEl = document.querySelector("#card-el");
